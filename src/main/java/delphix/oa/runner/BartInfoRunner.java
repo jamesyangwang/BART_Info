@@ -39,16 +39,7 @@ public class BartInfoRunner implements ApplicationRunner {
 			}
 			
 			// build the result list
-			List<ResultRecord> result = new ArrayList<>();
-			for (EstInfo ei : br.getRoot().getStation().get(0).getEtd()) {
-				for (TrainInfo ti : ei.getEstimate()) {
-					// 'leaving' = 0
-					int minsLeft = isInt(ti.getMinutes()) ? Integer.valueOf(ti.getMinutes()) : 0;
-					ResultRecord rr = new ResultRecord(minsLeft, ei.getDestination());
-					result.add(rr);
-				}
-			}
-			result.sort((a, b) -> a.getMinsLeft() - b.getMinsLeft());
+			List<ResultRecord> result = buildResultList(br);
 			
 			// print out first 10 records
 			printResult(result, br.getRoot().getTime());
@@ -57,6 +48,20 @@ public class BartInfoRunner implements ApplicationRunner {
 			log.error("Could not get BART info from bart.gov");
 			log.error(ex.getMessage());
 		}
+	}
+
+	private List<ResultRecord> buildResultList(BartResponse br) {
+		List<ResultRecord> result = new ArrayList<>();
+		for (EstInfo ei : br.getRoot().getStation().get(0).getEtd()) {
+			for (TrainInfo ti : ei.getEstimate()) {
+				// 'leaving' = 0
+				int minsLeft = isInt(ti.getMinutes()) ? Integer.valueOf(ti.getMinutes()) : 0;
+				ResultRecord rr = new ResultRecord(minsLeft, ei.getDestination());
+				result.add(rr);
+			}
+		}
+		result.sort((a, b) -> a.getMinsLeft() - b.getMinsLeft());
+		return result;
 	}
 
 	private void printResult(List<ResultRecord> result, String curtTime) {

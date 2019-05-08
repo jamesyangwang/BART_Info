@@ -37,7 +37,6 @@ public class BartInfoRunner implements ApplicationRunner {
 				log.info("Got empty result from bart.gov");
 				return; 
 			}
-			log.info(br.toString());
 			
 			// build the result list
 			List<ResultRecord> result = new ArrayList<>();

@@ -1,7 +1,9 @@
-Run *'mvn clean package -DskipTests'* to build the proejct.
+Run ```*'mvn clean package -DskipTests'*``` to build the proejct.
 
 Run without build by download 'bart.info-0.0.1-SNAPSHOT.jar' and the following command:
+```
 *'java -jar bart.info-0.0.1-SNAPSHOT.jar'*
+```
 
 Sample result:
 ```

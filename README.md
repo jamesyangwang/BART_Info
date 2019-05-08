@@ -3,7 +3,8 @@ Run *'mvn clean package -DskipTests'* to build the proejct.
 Run without build by download 'bart.info-0.0.1-SNAPSHOT.jar' and the following command:
 *'java -jar bart.info-0.0.1-SNAPSHOT.jar'*
 
-Sample result:>
+Sample result:
+```
 --------------------------------------------------
 Montgomery St. 02:57:16 PM PDT
 --------------------------------------------------
@@ -17,3 +18,4 @@ Montgomery St. 02:57:16 PM PDT
 15 min Antioch
 15 min Daly City
 17 min SF Airport
+```
